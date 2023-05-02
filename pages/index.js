@@ -14,6 +14,19 @@ export default function Home() {
 
   async function onSubmit(event) {
     event.preventDefault();
+
+    // Form validation
+    if (
+      formData.age.trim() === "" ||
+      formData.weight.trim() === "" ||
+      formData.height.trim() === "" ||
+      formData.gender === "" ||
+      formData.activityLevel === ""
+    ) {
+      alert("All fields must be filled");
+      return;
+    }
+
     try {
       const response = await fetch("/api/generate", {
         method: "POST",
@@ -51,12 +64,12 @@ export default function Home() {
     <div>
       <Head>
         <title>Diet Plan Generator</title>
-        <link rel="icon" href="/diet.png"/>
+        <link rel="icon" href="/diet.png" />
       </Head>
 
       <main className={styles.main}>
         <h3>Generate a personalized 3-day diet plan</h3>
-        <img src="/salad.png" width="100px"/>
+        <img src="/salad.png" width="100px" />
         <form onSubmit={onSubmit}>
           <input
             type="number"
